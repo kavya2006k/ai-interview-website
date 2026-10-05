@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Interview Questions</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8edff, #f6edff);
+            margin: 0;
+            padding: 30px;
+            color: #222;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .header {
+            background: rgba(255,255,255,0.96);
+            padding: 28px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(70,60,130,0.10);
+            border: 1px solid #eeeaff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #29245c;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #4038a8;
+        }
+
+        .setup {
+            background: linear-gradient(135deg, #eeedff, #f5edff);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #6366f1;
+        }
+
+        .setup p {
+            margin: 10px 0;
+        }
+
+        .question-card {
+            background: white;
+            padding: 23px;
+            margin-top: 18px;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(70,60,130,0.08);
+            border: 1px solid #eeeaff;
+            transition: 0.2s;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 25px rgba(70,60,130,0.13);
+        }
+
+        .question-number {
+            color: #6366f1;
+            font-weight: bold;
+        }
+
+        .skill {
+            display: inline-block;
+            padding: 7px 12px;
+            background: #e8e7ff;
+            color: #4038a8;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        details {
+            margin-top: 15px;
+            padding: 13px;
+            background: #f7f7ff;
+            border-radius: 9px;
+            border: 1px solid #e5e3ff;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        details p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .buttons {
+            margin-top: 25px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .mock-button {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            box-shadow: 0 6px 15px rgba(79,70,229,0.25);
+        }
+
+        .mock-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .back-button {
+            background: #eeeeF8;
+            color: #4038a8;
+        }
+
+        .footer {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .question-card {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>🤖 AI Interview Assistant</h1>
+
+        <div class="setup">
+
+            <h2>Your Interview Setup</h2>
+
+            <p>
+                <strong>💼 Job:</strong>
+                {{ job }}
+            </p>
+
+            <p>
+                <strong>🛠️ Skills:</strong>
+                {{ skills | join(', ') }}
+            </p>
+
+            <p>
+                <strong>👤 Experience:</strong>
+                {{ experience }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTIONS -->
+
+    <div class="header">
+
+        <h2>📋 Interview Questions</h2>
+
+        {% for item in questions %}
+
+            <div class="question-card">
+
+                <p class="question-number">
+                    Question {{ loop.index }}
+                </p>
+
+                <p>
+                    <strong>{{ item.question }}</strong>
+                </p>
+
+                <p>
+                    <span class="skill">
+                        {{ item.skill }}
+                    </span>
+                </p>
+
+                <details>
+
+                    <summary>
+                        👁️ View Answer
+                    </summary>
+
+                    <p>
+                        {{ item.answer }}
+                    </p>
+
+                </details>
+
+            </div>
+
+        {% endfor %}
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <form action="/mock-test" method="POST">
+
+                <input
+                    type="hidden"
+                    name="job"
+                    value="{{ job }}"
+                >
+
+                <input
+                    type="hidden"
+                    name="experience"
+                    value="{{ experience }}"
+                >
+
+                {% for skill in skills %}
+
+                    <input
+                        type="hidden"
+                        name="skills"
+                        value="{{ skill }}"
+                    >
+
+                {% endfor %}
+
+                <button
+                    class="mock-button"
+                    type="submit"
+                >
+                    🚀 Start Mock Test
+                </button>
+
+            </form>
+
+
+            <button
+                class="back-button"
+                onclick="window.location.href='/'"
+            >
+                ← Back to Interview Setup
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        AI Interview Assistant • BCA Project
+
+    </div>
+
+</div>
+
+</body>
+</html>

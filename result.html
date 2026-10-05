@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Result - AI Interview Assistant</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8edff, #f6edff);
+            margin: 0;
+            padding: 30px;
+            color: #222;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(70,60,130,0.10);
+            border: 1px solid #eeeaff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #29245c;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #4038a8;
+        }
+
+        .result-title {
+            text-align: center;
+            color: #4038a8;
+        }
+
+        .score-box {
+            text-align: center;
+            margin: 25px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #eeedff, #f5edff);
+            border-radius: 15px;
+            border: 1px solid #dcd9ff;
+        }
+
+        .score {
+            font-size: 42px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .score-label {
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .feedback {
+            background: linear-gradient(135deg, #eeedff, #f5edff);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #6366f1;
+            line-height: 1.6;
+        }
+
+        .suggestion {
+            background: #fafaff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 1px solid #e5e3ff;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .again {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            box-shadow: 0 6px 15px rgba(79,70,229,0.25);
+        }
+
+        .again:hover {
+            transform: translateY(-2px);
+        }
+
+        .home {
+            background: #eeeeF8;
+            color: #4038a8;
+        }
+
+        .footer {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .score {
+                font-size: 36px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <!-- RESULT -->
+
+    <div class="card">
+
+        <h1>🤖 AI Interview Assistant</h1>
+
+        <h2 class="result-title">
+            🏆 Mock Test Result
+        </h2>
+
+        <hr>
+
+
+        <div class="score-box">
+
+            <div class="score">
+                {{ score }} / {{ total }}
+            </div>
+
+            <div class="score-label">
+                Your Test Score
+            </div>
+
+        </div>
+
+
+        {% if total > 0 and score == total %}
+
+            <h3>🎉 Excellent!</h3>
+
+            <p>
+                You answered all questions correctly.
+                Your technical understanding is very good.
+            </p>
+
+        {% elif total > 0 and score >= total / 2 %}
+
+            <h3>👍 Good Job!</h3>
+
+            <p>
+                You have a good understanding of the concepts,
+                but there is still room for improvement.
+            </p>
+
+        {% else %}
+
+            <h3>💪 Keep Practicing!</h3>
+
+            <p>
+                Review the important concepts and try the mock
+                test again to improve your score.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- AI FEEDBACK -->
+
+    <div class="card">
+
+        <h2>🤖 AI Feedback</h2>
+
+        <div class="feedback">
+
+            <strong>Performance Analysis</strong>
+
+            <p>
+                Based on your mock test performance, you should
+                continue practicing technical concepts and
+                interview questions.
+            </p>
+
+        </div>
+
+
+        <div class="suggestion">
+
+            <strong>💡 Improvement Suggestion</strong>
+
+            <p>
+                Focus on understanding concepts instead of only
+                memorizing answers. Practice regularly and review
+                the topics where you make mistakes.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="card">
+
+        <div class="buttons">
+
+            <button
+                class="again"
+                onclick="window.location.href='/'"
+            >
+                🚀 Start Again
+            </button>
+
+            <button
+                class="home"
+                onclick="window.location.href='/'"
+            >
+                🏠 Back to Home
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        AI Interview Assistant • BCA Project
+
+    </div>
+
+</div>
+
+</body>
+</html>
